@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+      <link href="css/style.css" rel="stylesheet">
+      <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Armata' rel='stylesheet' type='text/css'>
+    <title>MSN Messenger 2.0 ken-viv</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      
+    
+      #messages { list-style-type: none;  padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+      
+      <div class="container">
+          
+          <div class="header">
+            <img src="css/images/messenger.png" width="50px"><h1> Karen - 
+                <span>r3aDY ~ 4 +hA w33keNd -*</span> </h1>
+          </div>
+           <div class="gradient headbox"></div>
+
+    <div class="messages"><ul id="messages"></ul></div>
+          
+                    
+          <div class="members">
+            <table>
+            <tr>   
+            <td>
+                <img src="css/images/icon.png" class="toppic"></td></tr>
+                <tr><td class="myspace"></td></tr>
+                <tr><td><img src="css/images/icon.png" class="bottompic"></tr></td>
+            </table>
+          </div>
+    
+          
+    <div class="emojibar"><img class="emoji" src="css/images/emojibar.png"></div>      
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+        <div class="atari"></div>
+<button class="search">Send</button>
+    </form>
+      </div>
+   <script src="/socket.io/socket.io.js"></script>
+   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  var socket = io();
+  $('form').submit(function(){
+    socket.emit('chat message', $('#m').val());
+    $('#m').val('');
+    return false;
+  });
+  socket.on('chat message', function(msg){
+    $('#messages').append($('<li>').text(msg));
+  });
+</script>
+
+
+  </body>
+</html>
